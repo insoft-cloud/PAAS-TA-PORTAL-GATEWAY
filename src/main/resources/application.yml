@@ -72,3 +72,10 @@ hystrix:
 management:     # If you set off security...
   security:
     enabled: false
+
+logging:
+  level:
+    ROOT: INFO
+  file:
+    path: classpath:logback-spring.xml
+    name: logs/application.log
