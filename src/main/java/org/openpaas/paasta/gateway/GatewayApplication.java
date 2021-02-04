@@ -9,6 +9,16 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 /**
  * The type Application.
+ *
+ * EnableZuulProxy
+ * zuul 서버를 사용.
+ *
+ * EnableEurekaServer
+ * EurekaServer 로 사용 할것을 선언한다.
+ *
+ * EnableDiscoveryClient
+ * EurekaClient 를 등록한다.
+ *
  */
 @EnableHystrix
 @EnableZuulProxy

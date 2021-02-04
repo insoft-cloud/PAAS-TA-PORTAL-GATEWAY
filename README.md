@@ -23,11 +23,10 @@ Netflix Filter 기능
 ## 유의사항
 
 개발 정보
-- java 1.8 버전
-- SpringCloud Edgware.RELEASE 
+- java 1.8 
+- Gradle 6.7
+- Spring-boot 2.4.2
 - TomcatEmded 8.5.14
-- Gradle 4.4.1
-- Spring-boot 1.5.9
-- Redis 1.3.1
+- SpringCloud 2020.0.0
 
 

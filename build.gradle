@@ -1,24 +1,23 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.10.RELEASE'
+        springBootVersion = '2.4.2'
     }
-
     repositories {
         mavenCentral()
     }
-
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE")
     }
 }
 
 apply plugin: 'java'
-apply plugin: 'groovy'
 apply plugin: 'idea'
+apply plugin: 'jacoco'
+apply plugin: 'groovy'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'jacoco'
-
+apply plugin: 'io.spring.dependency-management'
 
 jar {
     baseName = 'paas-ta-portal-gateway'
@@ -33,9 +32,11 @@ def defaultEncoding = 'UTF-8'
 [compileGroovy, compileTestGroovy]*.options*.encoding = defaultEncoding
 
 ext {
-    springBootVersion = '1.5.10.RELEASE'
-    springCloudVersion = 'Edgware.SR1'
-
+    springBootVersion = '2.4.2'
+    springCloudVersion = '2020.0.0'
+    ribbonVersion = '2.2.6.RELEASE'
+    zuulVersion = '2.1.2.RELEASE'
+    jacocoVersion = '0.8.1'
 }
 
 repositories {
@@ -43,14 +44,10 @@ repositories {
 }
 
 dependencies {
-    //Admin Server Setting
-//    compile ('de.codecentric:spring-boot-admin-starter-client:1.5.7')
-//
-//    compile ('org.springframework.cloud:spring-cloud-starter-config')
-    compile ('org.springframework.cloud:spring-cloud-starter-eureka')
-    compile ('org.springframework.cloud:spring-cloud-starter-ribbon')
-    compile ('org.springframework.cloud:spring-cloud-starter-zuul')
-    compile ('org.codehaus.groovy:groovy-all:2.4.13')
+    compile ('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+    compile ("org.springframework.cloud:spring-cloud-starter-netflix-ribbon:${ribbonVersion}")
+    compile ("org.springframework.cloud:spring-cloud-starter-netflix-zuul:${zuulVersion}")
+    compile ('org.codehaus.groovy:groovy-all:3.0.7')
     testCompile ('org.springframework.boot:spring-boot-starter-test')
 }
 
@@ -69,7 +66,7 @@ eclipse {
 }
 
 jacoco {
-    toolVersion = "0.7.9+"
+    toolVersion = "${jacocoVersion}"
 }
 
 test {
